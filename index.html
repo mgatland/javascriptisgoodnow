@@ -144,217 +144,222 @@
 				</section>
 
 				<section>
-					<img class="noborder" src="">
+					<img class="noborder" src="./img/safari-icon.png">
 				</section>
 
+				<section>
+					<img class="noborder" src="./img/internet-explorer-icon.png">
+				</section>
 
 				<section>
-					<h2>Our goals</h2>
-					<ul>
-						<li class="fragment">iPhone, Android, Windows, Mac</li>
-						<li class="fragment">One language for all - not one language per platform</li>
-						<li class="fragment">No complex tools, no buggy engines, no expensive licences…</li>
-					</ul>
+				<img class="noborder" width="300" src="./img/iphone.png">
+				<img class="noborder" width="300" src="./img/android.png">
+				</section>
+
+				<section>
+					<h2>No App Store</h2>
+					<p class="fragment">(Actually, you can still use the app store if you want to)</p>
+					<p class="fragment">(We'll talk about this later)</p>
+				</section>
+
+				<section>
+					<img src="./img/skeptical.jpg">
+				</section>
+
+				<section>
+					<h2>That's cool, but</h2>
+					<h2 class="fragment">can i make a real game?</h2>
+					
 				</section>
 
 				<section>
 					<h2>Is JavaScript good enough?</h2>
 					<ul>
 					 <li class="fragment">graphics</li>
-					 <li class="fragment">framerate</li>
+					 <li class="fragment">smooth framerate</li>
 					 <li class="fragment">audio</li>
-					 <li class="fragment">touch</li>
+					 <li class="fragment">controls</li>
 					 <li class="fragment">networking</li>
-					 <li class="fragment">distribution</li>
+					 <li class="fragment">App stores</li>
 					 <li class="fragment">…</li>
 					</ul>
 				</section>
 
-				<section>
-					<h2>Distribution (part 1)</h2>
-					<ul>
-						<li>We put our game online - it's a website.</li>
-						<li>People access it through their web browser.</li>
-						<li>It's quick and easy, but hard to promote and monetize.</li>
-						<li>App store? We'll come back to that.</li>
-					</ul>
-				</section>
-
+<!--
 				<section>
 					<h2>Graphics</h2>
-					<p>	Make a webpage with a canvas.</p>
-					<p>	Draw to the canvas using JavaScript.</p>
-					<p>	two options:<br></p>
-					<p>	* canvas 2D: easier, works on more devices, but slower</p>
-					<p>	* WebGL: powerful, 3D or 2D, fast, works on newer devices</p>
-					<p>	examples go here</p>
-					<p>	show an example</p>
-					<p>	browser support</p>
+					<p class="fragment">Canvas 2D is simple (but slow)</p>
+					<pre class="fragment"><code data-trim contenteditable>
+...
+  ctx.fillStyle = "#FF0000";
+  ctx.fillRect(0, 0, 150, 75);
+
+  ctx.drawImage(flameSprite, 100, 100);
+...
+					</code></pre>
+					<p class="fragment">WebGL is fast, but more complicated</p>
+					<pre class="fragment"><code data-trim contenteditable>
+...
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.enable(gl.DEPTH_TEST);
+  gl.depthFunc(gl.LEQUAL);
+  gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+...
+					</code></pre>
+					<p class="fragment">(use a framework?)</p>
+				</section>
+-->
+				<section>
+					<h2>Graphics</h2>
+					<p> <span class="fragment">2D, 3D</span><span class="fragment">, all devices</span></p>
+					<img class="fragment" src="./img/webgl-scene.jpg">				
 				</section>
 
 				<section>
-					<h2>framerate</h2>
-					<p>requestAnimationFrame()</p>
-
-					<p>calls your code at 60fps (every time the screen repaints)</p>
-
-					<p>Before this, there was _no_ accurate timing in javascript. </p>
-
-					<p>browser support</p>
-
-					<p>example, thing bouncing back and forwards.</p>
-					<p>example, using setInterval, for comparison. Side by side.</p>
+					<h2>Going fullscreen</h2>
+					<img class="fragment noborder" src="./img/iphone-chrome.png">
 				</section>
 
 				<section>
-					<h2> full screen</h2>
-
-					<p>On mobile, it's annoying when your game runs in a browser.</p>
-
-					<p>You get all this junk all around it</p>
-
-					<p>(browser junk)</p>
-
-					<p>On Android, go full screen like this:</p>
-
-					<p>On iOS, go full screen like this:</p>
-
-					<p>browser support</p>
-
-					<p>iOS is a bit buggy when you rotate the screen :/ it scrolls your page down. Hacks to fix, hopefully Apple will fix it soon.</p>
+					<h2>Going fullscreen</h2>
+					<img class="noborder" src="./img/iphone-no-chrome.png">
 				</section>
 
 				<section>
-					<h2> graphics END</h2>
+					<h2>Going fullscreen</h2>
+					<div class="fragment">
+					<p>iOS 7.1+</p><!--March 2014-->
+					<pre><code data-trim contenteditable>
+&lt;meta name="viewport" content="minimal-ui"&gt;
+					</code></pre>
+					</div>
+					<br>
+					<div class="fragment">
+					<p>Android</p>
+					<pre><code data-trim contenteditable>
+element.requestFullscreen();
+					</code></pre>
+					</div>
 
-					<p>So we can draw at 60fps, on every platform, we can do 2d or 3d, and we can go full screen even though we're just a website. This is a good start.</p>
+				</section>
+
+				<section>
+					<h2>Framerate</h2>
+					<pre class="fragment"><code class="javascript" data-trim contenteditable>
+window.requestAnimationFrame(update) //called on every screen refresh
+					</code></pre>
+					<br>
+					<p class="fragment">(Before this, there was <em>no</em> accurate timing in JavaScript!)</p>
 				</section>
 
 				<section>
 					<h2>Audio</h2>
 
-					<p>Previously, iOS audio support was bad as.</p>
+					<p class="fragment">This used to be really bad</p>
 
-					<p>Now it's good - we can play multiple channels, volume, special fx, mix sounds, everything.</p>
-
-					<p>code example</p>
-					<p>browser support</p>
+					<p class="fragment">(especially on iPhone)</p>	
+					<br>
+					<p class="fragment">Now it's good – we can play multiple channels, change volume, use special effects, everything.</p>
+					<br>
+					<p class="fragment">(remember the unmute hack)</p>	
 				</section>
 
-				<section>
-					<h2> Audio - iOS hacks</h2>
-					<p>on iOS, a web page start muted.</p>
 
-					<p>They unmute if a sound is played _as a result of a user action_</p>
-
-					<p>Workaround: say 'tap here to begin'</p>
+					<!--<p>Workaround: say 'tap here to begin'</p>
 					<p>When the user taps, play a sound (and sound)</p>
-					<p>audio is now unmuted.</p>
-				</section>
+					<p>audio is now unmuted.</p>-->
 
 				<section>
-					<h2> Keyboard</h2>
+					<h2>Input</h2>
 
-					<p>example</p>
+					<p class="fragment">I don't want any browser rubbish</p>
 
-					<p>We return false to cancel the browser's default behaviour (scrolling with arrow keys, zooming in and out, going back to the previous page)</p>
+					<ul>
+						<li class="fragment">NO double tap to zoom-in</li>
+						<li class="fragment">NO swipe left to go back</li>
+						<li class="fragment">Arrow keys should NOT scroll</li>
+						<li class="fragment">...</li>
+					</ul>					
+					<br>
+					<p class="fragment">We can disable MOST default browser actions with one line:</p>
 
-					<p>I don't like the event system messing with my game, so I use a class to convert event-driven keyboard to a set of flags I can check.</p>
+					<pre class="fragment"><code data-trim contenteditable>
+...
+  e.preventDefault();
+...
+					</code></pre>
 
-					<p>example</p>
-
-					<p>browser support: everything</p>
+					<p class="fragment">(There are a few you can't disable)</p>
 				</section>
 
-				<section>
-					<h2> Mouse</h2>
-
-					<p>it's pretty similar.</p>
-	
-				</section>
-
-				<section>
-					<h2> Touch</h2>
-
-					<p>touch events are similar.</p>
-
-					<p>browsers do weird stuff with touch, like the 300ms delay on iOS.</p>
-
-					<p>You can fix this.</p>
-
-					<p>browser support</p>
-
-				</section>
-				<section>
-
-					<h2> So far</h2>
-
-					<p>Now we have a game with graphics, audio, and controls for mobile and desktop.</p>
-
-					<p>Next, some network code.</p>
-
-				</section>
 				<section>
 					<h2> Network</h2>
 
-					<p>Networking is a little complex so I'm using a framework - socket.io</p>
+					<p class="fragment">Networking is a little complex, so I use a framework – socket.io</p>
 
-					<p>First, we add it to our website.</p>
+					<div class="fragment">
+					<pre><code data-trim contenteditable class="javascript">
+  var socket = io.connect("http://mgatland.com/server");
 
-					<p>Now we connect to our server.</p>
+  //send a message
+  var messageType = "state";
+  var message = {x:10, y:10, health:99};
+  socket.emit(messageType, message);
 
-					<p>This is how we send a message</p>
-
-					<p>This is how we recieve a message.</p>
-
-					<p>browser support</p>
-
+  //receive a message
+  socket.on("state", function (data) {
+  	//do stuff
+  })
+...
+					</code></pre>
+					</div>
+					<p class="fragment">JSON is easy, but inefficient... you can use binary instead.</p>
 				</section>
 				<section>
 
-					<h2> Network limitations</h2>
+					<h2>Network limitations</h2>
 
-					<p>It's all TCP. We can't do UDP (unreliable) unfortunately.</p>
+					<p class="fragment">Websockets can only do reliable connections.<br>We can't send unreliable (UDP) data.</p>
 
-				</section>
-				<section>
-
-					<h2> Network #2</h2>
-
-					<p>WebRTC lets us make P2P connections between two web browsers.</p>
-
-					<p>It also lets us make unreliable connections.</p>
-
-					<p>browser support:</p>
-					<p>It's not supported on iOS yet :(</p>
-
-					<p>So no WebRTC goodness yet in our cross-platform games.</p>
+					<p class="fragment">WebRTC supports unreliable data, but it's not in iOS, Safari or Internet Explorer.</p>
 
 				</section>
-				<section>
 
-					<h2> The browser problem</h2>
+				<section>
+					<h2>And Finally...</h2>
+
+				</section>
+
+				<section>
+					<h2>Distribution</h2>
+					<img src="./img/appstore.png" class="noborder">
+				</section>
+
+				<section>
 
 					<p>Distributing your game as a website is super easy.</p>
 
-					<p>You can paste the URL anywhere to let people play your game.</p>
 
-					<p>This is a super great way to share a game. For example, Gridland and 2048 are shared this way.</p>
+					<p class="fragment">(See Gridland and 2048)</p>
 
-				</section>
-				<section>
+					<p class="fragment">But if you wanna get rich, you need to play in the App Store...</p>
 
-					<h2> The browser problem</h2>
-
-					<p>However, if you want to sell your game, you probably need to be in the App Store.</p>
-
-					<p>Fortunately this is really easy:</p>
 
 				</section>
 				<section>
 
-					<h2> Cocoon.js</h2>
+					<h2>Cocoon.js</h2>
 
+					<img class="noborder" src="./img/cocoon.webp">
+
+					<p class="fragment">turns your JavaScript game into an app</p>
+
+					<p class="fragment">free (for now)</p>
+
+					<p class="fragment">totally easy</p>
+
+					<p class="fragment">(they add a splash screen)</p>
+<!--
 					<p>* Cocoon.js will wrap your game and turn it into an app (iOS + Android)</p>
 					<p>* There service is easy to use, and free (for now...)</p>
 					<p>* but we don't know how much they will charge later.</p>
@@ -369,69 +374,58 @@
 					<p>No browser chrome</p>
 
 					<p>Note: To really make your game into an app, you need to draw icons, sign up as a developer, get a signing key, all that annoying stuff. Submit and wait for approval. Unfortunately there's no way to avoid this if you want to be in the app store.</p>
-
+-->
 				</section>
+	
 				<section>
 
-					<h2> PhoneGap</h2>
+					<h2>Cocoon.js (continued)</h2>
 
-					<p>* PhoneGap is Open Source, so they can't screw you by changing the price.</p>
-					<p>* no splash screen</p>
-					<p>* But it might take longer to set up.</p>
-					<p>* I promised we wouldn't install any tools, so we're not going to do this.</p>
+					<p class="fragment">You can test this in &lt; 5 minutes</p>
 
-				</section>
-				<section>
+					<p class="fragment">Doing it for real is <em>almost</em> as easy - you need icons, licence keys...</p>
 
-					<h2> A warning</h2>
-
-					<p>We're using the latest features. Apple has only just started supporting them</p>
-
-					<p>Your games will only work for people who keep their iPhone\iPad up to date.</p>
-
-					<p>Also, browser support always lags behind native app support. If you want to access the camera, accelerometer, microphone, and GPS, you can - but you might get fewer options than you'd get from a native app.</p>
-
-					<p>Mobile Notifications?</p>
-					<p>Game Center? </p>
-
-					<p>PhoneGap might have a plugin for you. If it doesn't, you're have to make one - so you're back to writing and debugging native code :(</p>
+					<p class="fragment">PhoneGap is an open source alternative.</p>
 
 				</section>
+
 				<section>
 
 					<h2> Conclusion</h2>
 
-					<p>You can make a game today that people can play on every platform.</p>
+					<p class="fragment">You can make a game today that people can play on every platform, right now.</p>
 
-					<p>You can distribute it on the web with NO DRAMA</p>
-					<p>You can put it in the app store with MINIMUM DRAMA</p>
+					<p class="fragment">You can distribute it on the web with NO DRAMA</p>
 
-					<p>Unlike Unity or Monkey, which translate your game into a different programming language for each platform, your game is written in JavaScript and stays in JavaScript.</p>
-
-					<p>This means you'll never get weird error messages coming from a tool chain that you don't understand.</p>
-
-				</section>
-				<section>
-
-					<h2> But wait, how do I learn JavaScript?</h2>
-
-					<p>JS is the most popular language in the world. Just google. Stack Overflow is a great place to ask questions.</p>
-
+					<p class="fragment">(No expensive licence)</p>
+					<p class="fragment">(No Xcode crashing all the time)</p>
+					<p class="fragment">(No learning a new language for every platform)</p>
+					<p class="fragment">(You don't even have to make a new build for each platform)</p>
 				</section>
 
 				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-code code code
-					</code></pre>
+					<h2> Conclusion</h2>
+
+					<p class="fragment">You can put it in the app store with ALMOST NO DRAMA</p>
+
+					<p class="fragment">(Still no Xcode! :)</p>
+					<p class="fragment">But you will need a developer account</p>
+
 				</section>
 
 				<section>
-				Image credits for Creative Commons images:
+				<p>Image credits for Creative Commons images:</p>
 
-				*	Paul Hudson from United Kingdom - 11.6" MacBook Air
-				* My iPhone by Marck170601
-				* "Samsung Galaxy S4 Mini" by GalaxyOptimus
+				<ul style="font-size:16px">
+					<li>11.6" MacBook Air by Paul Hudson</li>
+					<li>My iPhone by Marck170601</li>
+					<li>Samsung Galaxy S4 Mini by GalaxyOptimus</li>
+					<li>Skeptical? by Mark Skipper – https://www.flickr.com/photos/bitterjug/6278390124/</li>
+					<li>Little Flame Character by Skorpio - http://opengameart.org/content/little-flame-character</li>
+					<li>App Store icon from iOS 7-inspired Mac icon set by Tristan Edwards https://www.iconfinder.com/icons/171355/app_store_icon</li>
+				</ul>
+
+				<p style="font-size:16px">Browser logos from https://github.com/alrra/browser-logos</p>
 				</section>
 
 				<section>
